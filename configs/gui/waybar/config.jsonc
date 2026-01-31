@@ -1,0 +1,136 @@
+{
+    "layer": "top",
+    "margin": "8 10 0 10",
+    
+    "modules-left": ["hyprland/workspaces", "cpu", "memory"],
+    "modules-center": ["clock", "custom/weather"],
+    "modules-right": ["tray", "bluetooth", "network", "hyprland/language", "pulseaudio", "backlight", "battery"],
+
+    "hyprland/workspaces" : {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "visible": "",
+            "default": "",
+            "empty": ""
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "all-outputs": false
+    },
+    "hyprland/window": {
+        "max-length": 20
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "󰻠  {usage}%",
+        "max-length": 15,
+        "states": {
+            "critical": 90,
+            "warning": 60
+        },
+        "tooltip": false,
+        "on-click": "exec ~/.config/hypr/scripts/apps/task-manager.sh"
+    },
+    "memory": {
+        "interval": 1,
+        "format": "󰍛  {used:0.1f} GiB, {percentage}%",
+        "max-length": 15,
+        "states": {
+            "critical": 90,
+            "warning": 80
+        },
+        "tooltip": false,
+        "on-click": "exec ~/.config/hypr/scripts/apps/task-manager.sh"
+    },
+
+    "clock": {
+        "format": "{:%d.%m.%Y • %H:%M}",
+        "tooltip": false,
+        "on-click": "exec ~/.config/hypr/scripts/apps/calendar.sh"
+    },
+    "custom/weather": {
+        "interval": 10,
+        "format": "{}",
+        "tooltip": false,
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "return-type": "json",
+        "on-click": "exec ~/.config/hypr/scripts/weather-popup.sh"
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 8,
+        "reverse-direction": true
+    },
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲 ",
+        "format-connected": "󰂱",
+        "tooltip-format": "Status: {status}",
+        "tooltip-format-on": "Bluetooth is on",
+        "tooltip-format-off": "Bluetooth is off",
+        "tooltip-format-disabled": "Bluetooth is disabled",
+        "tooltip-format-connected": "Connected to: {device_alias}",
+        "tooltip-format-connected-battery": "Connected to: {device_alias} ({device_battery_percentage}% 󰁹)",
+        "on-click": "exec ~/.config/hypr/scripts/settings/setup-bluetooth.sh"
+    },
+    "network": {
+        "format": "󰖈 {ifname}",
+        "format-wifi": "{icon}   {essid}",
+        "format-ethernet": "   {ipaddr}",
+        "format-disconnected": "󱘖   Disconnected",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{frequency} GHz, {signaldBm} dBm (~{signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname} via {gwaddr}",
+        "tooltip-format-disconnected": "No connection",
+        "max-length": 50,
+        "on-click": "exec ~/.config/hypr/scripts/settings/setup-wifi.sh"
+    },
+    "hyprland/language": {
+        "format": "   {}",
+        "format-en": "us",
+        "format-ru": "ru",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰝟",
+        "format-bluetooth": "󰂰",
+        "format-icons": {
+            "bluetooth": "󰦢",
+            "headset": "󰋎",
+            "headphones": "󰋋",
+            "handsfree": "󰋍",
+            "phone": "󰏲",
+            "portable": "󰗜",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "{volume}%",
+        "scroll-step": 5,
+        "on-click": "exec ~/.config/hypr/scripts/settings/setup-sound.sh"
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["󰄰", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+        "scroll-step": 10,
+        "tooltip-format": "{percent}%"
+    },
+    "battery": {
+        "interval": 30,
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-full": "󱟢 {capacity}%",
+        "format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"],
+        "format-time": "{H}h {M}m",
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip-format": "{timeTo} ({power:0.1f} W)",
+        "on-click": "exec kitty --class floating-terminal-utils-menu -o confirm_os_window_close=0 zsh -c ~/.config/hypr/scripts/utils/utils-menu-power-profiles.sh"
+    }
+}

@@ -1,0 +1,26 @@
+[calendars]
+
+[[private]]
+path = /home/yuukari/.local/share/khal/calendars/private
+type = calendar
+color = light green
+
+[[work]]
+path = ~/.calendars/work/events-23994204/
+color = light red
+readonly = true
+
+[[google]]
+path = ~/.calendars/google/
+color = light blue
+readonly = true
+
+[locale]
+timeformat = %H:%M
+dateformat = %d.%m.%Y
+longdateformat = %d.%m.%Y
+datetimeformat = %d.%m.%Y %H:%M
+longdatetimeformat = %d.%m.%Y %H:%M
+
+[default]
+default_calendar = private

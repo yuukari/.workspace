@@ -1,0 +1,32 @@
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+[pair work]
+a = "work_local"
+b = "work_remote"
+collections = ["from a", "from b"]
+
+[storage work_local]
+type = "filesystem"
+path = "~/.calendars/work"
+fileext = ".ics"
+
+[storage work_remote]
+type = "caldav"
+url = {env:CORP_URL}
+username = {env:CORP_USERNAME}
+password = {env:CORP_PASSWORD}
+
+[pair google]
+a = "google_local"
+b = "google_remote"
+collections = null
+
+[storage google_local]
+type = "filesystem"
+path = "~/.calendars/google"
+fileext = ".ics"
+
+[storage google_remote]
+type = "http"
+url = {env:PRIVATE_URL}

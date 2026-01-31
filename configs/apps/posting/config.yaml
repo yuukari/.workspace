@@ -1,0 +1,23 @@
+layout: horizontal
+spacing: compact
+theme: dracula
+
+pager: less
+pager_json: fx
+editor: fresh
+
+command_palette:
+  theme_preview: true
+
+collection_browser:
+  show_on_startup: false
+
+focus:
+  on_startup: collection
+  on_response: tabs
+  on_request_open: body
+
+keymap:
+  search-requests: "ctrl+f"
+  send-request: "ctrl+enter"
+  quit: "ctrl+f4"

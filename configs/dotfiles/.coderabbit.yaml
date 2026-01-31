@@ -1,0 +1,4 @@
+language: ru-RU
+reviews:
+  path_filters:
+    - "!vendor/**"

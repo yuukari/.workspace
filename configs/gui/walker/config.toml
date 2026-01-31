@@ -1,0 +1,86 @@
+force_keyboard_focus = false
+close_when_open = true
+click_to_close = true
+selection_wrap = false
+global_argument_delimiter = "#"
+exact_search_prefix = "'"
+theme = "custom"
+disable_mouse = false
+debug = false
+
+[shell]
+anchor_top = true
+anchor_bottom = true
+anchor_left = true
+anchor_right = true
+
+[placeholders]
+"default" = { input = "Search", list = "No results" }
+
+[keybinds]
+close = ["Escape"]
+next = ["Down"]
+previous = ["Up"]
+toggle_exact = ["ctrl e"]
+resume_last_query = ["ctrl r"]
+quick_activate = []
+
+[providers]
+default = [
+  "desktopapplications",
+  "calc"
+]
+empty = [
+  "desktopapplications"
+]
+max_results = 50
+
+[[providers.prefixes]]
+prefix = "."
+provider = "symbols"
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[[providers.prefixes]]
+prefix = ":"
+provider = "clipboard"
+
+[providers.clipboard]
+time_format = "%d.%m. - %H:%M"
+
+[providers.actions]
+dmenu = [{ action = "select", default = true, bind = "Return" }]
+
+providerlist = [
+  { action = "activate", default = true, bind = "Return", after = "ClearReload" },
+]
+
+calc = [
+  { action = "copy", default = true, bind = "Return" },
+  { action = "delete", bind = "ctrl d", after = "AsyncReload" },
+  { action = "save", bind = "ctrl s", after = "AsyncClearReload" },
+]
+
+desktopapplications = [
+  { action = "start", label = "open", bind = "Return" },
+  { action = "erase_history", label = "clear hist", bind = "ctrl h", after = "AsyncReload" },
+  { action = "pin", bind = "ctrl p", after = "AsyncReload" },
+  { action = "unpin", bind = "ctrl p", after = "AsyncReload" },
+  { action = "pinup", bind = "ctrl n", after = "AsyncReload" },
+  { action = "pindown", bind = "ctrl m", after = "AsyncReload" },
+]
+
+symbols = [
+  { action = "run_cmd", label = "select", default = true, bind = "Return" },
+  { action = "erase_history", label = "clear hist", bind = "ctrl h", after = "Reload" },
+]
+
+clipboard = [
+  { action = "copy", default = true, bind = "Return" },
+  { action = "remove", bind = "ctrl d", after = "ClearReload" },
+  { action = "remove_all", global = true, label = "clear", bind = "ctrl shift d", after = "ClearReload" },
+  { action = "toggle_images", global = true, label = "toggle images", bind = "ctrl i", after = "ClearReload" },
+  { action = "edit", bind = "ctrl o" },
+]
