@@ -40,16 +40,16 @@ setup_packages() {
     polkit-kde-agent \
     power-profiles-daemon \
     slurp \
+    swayosd \
     smartmontools \
     vdirsyncer \
     uv \
-    waybar
+    waybar \
+    wl-clipboard
 
   yay -S --noconfirm \
     elephant elephant-calc elephant-clipboard elephant-desktopapplications elephant-symbols elephant-unicode \
-    swayosd-git \
-    walker \
-    wl-clipboard
+    walker
 
   # TUIs
   sudo pacman -S --noconfirm \
