@@ -38,6 +38,7 @@ PROJECT_PATHS=(~/Code/work/simple-decision-maker ~/Code/work/service ~/Code/work
 
 alias goland="(&>/dev/null /opt/GoLand*/bin/goland.sh . &) && exit"
 alias phpstorm="(&>/dev/null /opt/PhpStorm*/bin/phpstorm.sh . &) && exit"
+alias dbe="(&>/dev/null /opt/PhpStorm*/bin/phpstorm.sh \"$HOME\Code\work\database\" &) && exit"
 
 alias get-ip="curl -s ipinfo.io | jq -r .ip"
 
@@ -52,8 +53,6 @@ function y() {
 }
 
 function ai() {
-    local PROXYAPI_API_KEY CEREBRAS_API_KEY
-    
     PROXYAPI_API_KEY=$(pass show api-keys/ai/proxyapi 2>/dev/null)
     if [[ -z "$PROXYAPI_API_KEY" ]]; then
         echo "Failed to get ProxyAPI API key from password storage"
@@ -65,20 +64,20 @@ function ai() {
         return 1
     fi
     
-    local CONFIG_TEMPLATE="$HOME/.config/aichat/config.template.yaml"    
+    CONFIG_TEMPLATE="$HOME/.config/aichat/config.template.yaml"
     if [[ ! -f "$CONFIG_TEMPLATE" ]]; then
         echo "Config template file for aichat not exists (path: $CONFIG_TEMPLATE)"
         return 1
     fi
     
-    local CONFIG_FILE="$(mktemp /tmp/aichat-$$-XXXXXX.yaml)"
+    CONFIG_FILE="$(mktemp /tmp/aichat-$$-XXXXXX.yaml)"
     cleanup() {
         [[ -n "$CONFIG_FILE" && -f "$CONFIG_FILE" ]] && rm -f "$CONFIG_FILE"
     }
     trap cleanup EXIT INT TERM
 
-    local PROXYAPI_API_KEY_ESCAPED=$(printf '%s\n' "$PROXYAPI_API_KEY" | sed 's/[\\&/]/\\&/g')
-    local CEREBRAS_API_KEY_ESCAPED=$(printf '%s\n' "$CEREBRAS_API_KEY" | sed 's/[\\&/]/\\&/g')
+    PROXYAPI_API_KEY_ESCAPED=$(printf '%s\n' "$PROXYAPI_API_KEY" | sed 's/[\\&/]/\\&/g')
+    CEREBRAS_API_KEY_ESCAPED=$(printf '%s\n' "$CEREBRAS_API_KEY" | sed 's/[\\&/]/\\&/g')
     
     sed -e "s/\${PROXYAPI_API_KEY}/$PROXYAPI_API_KEY_ESCAPED/g" \
         -e "s/\${CEREBRAS_API_KEY}/$CEREBRAS_API_KEY_ESCAPED/g" \
@@ -92,7 +91,7 @@ function ai() {
 }
 
 function ymd() {
-    local YANDEX_MUSIC_TOKEN="$(pass show api-keys/yandex-music-token)"
+    YANDEX_MUSIC_TOKEN="$(pass show api-keys/yandex-music-token)"
     if [[ -z "$YANDEX_MUSIC_TOKEN" ]]; then
         echo "Failed to get yandex music token from password storage"
         return 1

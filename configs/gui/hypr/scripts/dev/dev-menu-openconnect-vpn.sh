@@ -9,6 +9,18 @@ openconnect_menu () {
     if [ -f /tmp/openconnect ]; then
         STATUS="(CONN)"
     fi
+
+    CORP_OPENCONNECT_USERNAME="$(pass show vpn/corp/openconnect/username)"
+    if [[ -z "$CORP_OPENCONNECT_USERNAME" ]]; then
+        echo "Failed to get OpenConnect username from password storage"
+        return 1
+    fi
+    CORP_OPENCONNECT_PASSWORD="$(pass show vpn/corp/openconnect/password)"
+    if [[ -z "$CORP_OPENCONNECT_PASSWORD" ]]; then
+        echo "Failed to get OpenConnect password from password storage"
+        return 1
+    fi
+
     item=$(GUM_CHOOSE_PADDING="3 8" gum choose --header="OpenConnect VPN menu $STATUS" "󰙨 $CORP_OPENCONNECT_NAME stage" "󱐋 $CORP_OPENCONNECT_NAME prod" "󰓛 Stop connection")
     case $item in
         "󰙨 $CORP_OPENCONNECT_NAME stage")

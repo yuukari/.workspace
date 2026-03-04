@@ -2,14 +2,14 @@
 
 My personal workspace configs for archlinux, based on hyprland and various TUIs, including:
 
-- Script for automatic installing on a fresh device with archlinux and preinstalled hyprland with basic config
 - Preference for TUI over GUI applications
-- [Utilities, development and session menus](#quick-menus) for quick access to frequent actions
-- Installing and removing packages from pacman/AUR with search in terminal, inspired by [omarchy](https://omarchy.org/)
+- [Utilities, development and session menus](#utility-developer-and-session-menus) for quick access to frequent actions
+- Installing and removing packages from pacman/AUR [with search in terminal](#packages-actions-menu), inspired by [omarchy](https://omarchy.org/)
 - Integrated [khal](https://github.com/pimutils/khal) application with events sync
   via [vdirsyncer](https://github.com/pimutils/vdirsyncer)
 - Shows weather from [wttr.in](https://github.com/chubin/wttr.in)
 - Safely passing sensitive data through password manager (pass) instead of plain-texting them in configs, .env's, etc
+- Script for automatic install
 
 ![Main preview](/.docs/preview.png)
 
@@ -17,7 +17,7 @@ My personal workspace configs for archlinux, based on hyprland and various TUIs,
 
 ## Installation
 
-Just clone this repository and execute setup script:
+Just clone this repository and execute setup script on a freshly installed archlinux:
 
 ```sh
 git clone https://github.com/yuukari/.workspace.git
@@ -108,3 +108,14 @@ cd .workspace
 </details>
 
 > Full list of dependencies present in [setup script function](/setup/2-packages.sh)
+
+## Quick menus
+
+### Utility, developer and session menus
+
+![Utility menu](.docs/utility-menu.png)
+![Developer menu](.docs/developer-menu.png)
+![Session menu](.docs/session-menu.png)
+
+### Packages actions menu
+
