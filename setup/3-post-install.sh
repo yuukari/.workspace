@@ -41,7 +41,26 @@ setup_post_install_hyprland() {
     echo -e "\n[*] 3.3. Configuring hyprland\n"
     set -e
 
-    hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
-    hyprpm enable split-monitor-workspaces
-    hyprpm reload
+    local plugin_dir="$HOME/.local/share/hypr/plugins/split-monitor-workspaces"
+
+    local repo_url="https://github.com/zjeffer/split-monitor-workspaces"
+
+    mkdir -p "$(dirname "$plugin_dir")"
+
+    # Recover from an interrupted previous clone: dir exists without .git
+    if [ -d "$plugin_dir" ] && [ ! -d "$plugin_dir/.git" ]; then
+        echo "[!] Incomplete plugin checkout found, removing $plugin_dir"
+        rm -rf "$plugin_dir"
+    fi
+
+    if [ -d "$plugin_dir/.git" ]; then
+        if ! git -C "$plugin_dir" fetch origin main; then
+            echo "[!] Offline or fetch failed, keeping existing plugin checkout"
+            return 0
+        fi
+        git -C "$plugin_dir" checkout main
+        git -C "$plugin_dir" pull --ff-only origin main
+    else
+        git clone --depth=1 --branch main "$repo_url" "$plugin_dir"
+    fi
 }
