@@ -96,7 +96,7 @@ function ymd() {
         echo "Failed to get yandex music token from password storage"
         return 1
     fi
-    command yandex-music-downloader --token "$YANDEX_MUSIC_TOKEN" --dir ~/Downloads/ymd --path-pattern '#album-artist - #album/#number - #album-artist - #title' --quality 2 "$@"
+    command yandex-music-downloader --token "$YANDEX_MUSIC_TOKEN" --dir ~/Downloads/ymd --path-pattern '#album-artist/#album-artist - #album/#number - #album-artist - #title' --quality 2 "$@"
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

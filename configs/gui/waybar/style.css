@@ -1,8 +1,8 @@
 * {
     border: none;
-    font-family: Mononoki, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
+    font-family: 'Adwaita';
+    font-weight: 500; /* 500 */
+    font-size: 14px; /* 14 */
     min-height: 0;
 }
 
