@@ -7,7 +7,7 @@ case $ITEM in
         loginctl lock-session
         ;;
     "󰍃 Log out")
-        hyprctl dispatch exit
+        hyprctl dispatch 'hl.dsp.exit()'
         ;;
     "󰐥 Shutdown")
         systemctl poweroff
