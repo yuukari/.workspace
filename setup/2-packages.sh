@@ -81,7 +81,6 @@ setup_packages() {
 
   # Development
   sudo pacman -S --noconfirm \
-    aichat \
     composer \
     docker docker-compose \
     go gopls gobject-introspection \
